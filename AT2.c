@@ -9,6 +9,7 @@
 #define rled 13
 
 uint8_t i;
+uint8_t leds[] = {gled, bled, rled};
 
 void ledinitset(){ //iniciando e direcionando todos os leds.
     for (i = 0 ; i < 3; i++){
@@ -25,23 +26,19 @@ void buzzinitset(){ //inicializando e direcionando o buzzer.
 }
 
 void lightbuz(){
-    gpio_put(gled, 1);
+for(i = 0 ; i < 3 ; i++){
+    gpio_put(leds +i, 1);
     sleep_ms(400);
-    gpio_put(gled, 0);
-    gpio_put(bled, 1);
-    sleep_ms(400);
-    gpio_put(bled, 0);
-    gpio_put(rled, 1);
-    sleep_ms(400);
-    gpio_put(rled, 0);
-    sleep_ms(200);
-    gpio_put(gled, 1);
-    gpio_put(bled, 1);
-    gpio_put(rled, 1);
-    sleep_ms(1000);
-    gpio_put(gled, 0);
-    gpio_put(bled, 0);
-    gpio_put(rled, 0);
+    gpio_put(leds + i, 0);
+    }
+        sleep_ms(500);
+for (i = 0 ; i < 3 ; i++){
+    gpio_put(leds + i, 1);
+    }
+        sleep_ms(1000);
+for (i = 0 ; i < 3 ; i++){
+    gpio_put(leds + i, 0);
+}
 }
 
 int64_t alarm_callback(alarm_id_t id, void *user_data) {
