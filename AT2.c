@@ -3,6 +3,46 @@
 #include "hardware/timer.h"
 #include "hardware/uart.h"
 
+#define buz 3
+#define gled 11
+#define bled 12
+#define rled 13
+
+uint8_t i;
+
+void ledinitset(){ //iniciando e direcionando todos os leds.
+    for (i = 0 ; i < 3; i++){
+        gpio_init(11 + i);
+        gpio_set_dir (11 + i, GPIO_OUT);
+        gpio_put(11 + i, 0);
+    }
+}
+
+void buzzinitset(){ //inicializando e direcionando o buzzer.
+    gpio_init(buz);
+    gpio_set_dir(buz, GPIO_OUT);
+    gpio_put(buz, 0);
+}
+
+void lightbuz(){
+    gpio_put(gled, 1);
+    sleep_ms(400);
+    gpio_put(gled, 0);
+    gpio_put(bled, 1);
+    sleep_ms(400);
+    gpio_put(bled, 0);
+    gpio_put(rled, 1);
+    sleep_ms(400);
+    gpio_put(rled, 0);
+    sleep_ms(200);
+    gpio_put(gled, 1);
+    gpio_put(bled, 1);
+    gpio_put(rled, 1);
+    sleep_ms(1000);
+    gpio_put(gled, 0);
+    gpio_put(bled, 0);
+    gpio_put(rled, 0);
+}
 
 int64_t alarm_callback(alarm_id_t id, void *user_data) {
     // Put your timeout handler code in here
