@@ -1,0 +1,4 @@
+[wokwi]
+version = 1
+firmaware = "build/AT2.uf2"
+elf = "build/AT2.elf"
