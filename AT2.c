@@ -23,7 +23,7 @@ void buzzinitset(){ //inicializando e direcionando o buzzer.
     gpio_put(buz, 0);
 }
 
-void lightbuz(){
+void lightbuz(){ //funcionamento dos leds... ligando e desligand
 for(i = 0 ; i < 3 ; i++){
     gpio_put(leds[i], 1);
     sleep_ms(400);
@@ -39,7 +39,7 @@ for (i = 0 ; i < 3 ; i++){
 }
 }
 
-void note(uint8_t buzzer, uint16_t notefreq, uint16_t duration_ms){
+void note(uint8_t buzzer, uint16_t notefreq, uint16_t duration_ms){ //EMISSÃO SONORA DO BUZZER
     int halfc = 1000000 / (2 * notefreq); // Calcula o tempo de espera para cada meio ciclo de onda
     int cycles = (notefreq * duration_ms) / 1000; // Número total de ciclos necessários para a duração
 
